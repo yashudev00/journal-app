@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Sensitive configs
+application.properties
