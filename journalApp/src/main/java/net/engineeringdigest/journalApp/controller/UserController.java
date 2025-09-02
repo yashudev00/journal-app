@@ -32,11 +32,9 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName=authentication.getName();
         User userInDb = userService.findByUserName(userName);
-        if(userInDb != null){
-            userInDb.setUserName(newUser.getUserName());
-            userInDb.setPassword(newUser.getPassword());
-            userService.saveEntry(userInDb);
-        }
+        userInDb.setUserName(newUser.getUserName());
+        userInDb.setPassword(newUser.getPassword());
+        userService.saveNewUser(userInDb);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

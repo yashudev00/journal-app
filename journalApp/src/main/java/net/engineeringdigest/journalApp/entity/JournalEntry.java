@@ -1,6 +1,5 @@
 package net.engineeringdigest.journalApp.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,7 +20,6 @@ public class JournalEntry {
     private String content;
 
     private LocalDateTime date;
-
 
     private User user;
 }
