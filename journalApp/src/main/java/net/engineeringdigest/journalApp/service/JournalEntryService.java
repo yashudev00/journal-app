@@ -1,9 +1,12 @@
 package net.engineeringdigest.journalApp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.JournalEntryRepository;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
+@Slf4j
 public class JournalEntryService {
     //business logic is written in service layer
     @Autowired
@@ -20,6 +25,8 @@ public class JournalEntryService {
 
     @Autowired
     private UserService userService;
+
+
 
     @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName){
@@ -31,7 +38,7 @@ public class JournalEntryService {
            // user.setUserName(null);  this line was added because to check how transactoinal works
             userService.saveUser(user);
         }catch (Exception e){
-            System.out.println(e);
+
             throw new RuntimeException("An error occurred while saving the entry.",e);
         }
     }
@@ -59,7 +66,7 @@ public class JournalEntryService {
                 journalEntryRepository.deleteById(id);
             }
         }catch (Exception e){
-            System.out.println(e);
+            log.error("Error",e);
             throw new RuntimeException("An error occured while deleting an entry.",e);
         }return removed;
     }
