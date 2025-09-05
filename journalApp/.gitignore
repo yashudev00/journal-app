@@ -34,5 +34,4 @@ build/
 .vscode/
 
 # Sensitive configs
-*.yml
-*.log
+application.properties
